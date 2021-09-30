@@ -1,5 +1,6 @@
 // rotas
 const express = require('express');
+const { MongoCompatibilityError } = require('mongoose/node_modules/mongodb');
 
 const User = require('../models/user');
 
@@ -20,6 +21,20 @@ router.post('/register', async (req, res) => {
     } catch (err) {
         return res.status(400).send({ error: 'Registration failed' });
     }
+});
+
+router.post('/authenticate', async (req, res) => {
+    const { email, password } = req.body;
+    
+    const user = await User.findOne({ email }).select('+password');
+
+    if (!user)
+        return res.send(400).send({ error: 'Usuário não encontrado' });
+
+        if (!await User.compare(password, user.password));
+        return res.send(401).send({ error: 'Usuário e/ou senha inválidos' });
+
+        res.send({ user });
 });
 
 module.exports = app => app.use('/auth', router);
