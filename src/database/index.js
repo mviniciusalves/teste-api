@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
 
-mongoose.connect('mongodb://localhost/api_database');
-mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:3000/api_database');
 
 module.exports = mongoose;

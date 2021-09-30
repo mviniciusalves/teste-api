@@ -1,6 +1,6 @@
 // rotas
 const express = require('express');
-const { MongoCompatibilityError } = require('mongoose/node_modules/mongodb');
+
 const jwt = require('jsonwebtoken')
 
 const authConfig = require('../config/auth.json') 
