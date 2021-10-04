@@ -9,5 +9,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 require('./controllers/authController')(app);
+require('./controllers/projectController')(app);
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
